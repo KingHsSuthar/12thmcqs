@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Physics Quiz</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #007BFF, #00d4ff);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden; /* Prevents body scrolling */
+        }
+        .container {
+            width: 95%;
+            max-width: 600px;
+            height: 70vh; /* Fixed height for scrolling */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            background: rgb(110, 168, 235);
+            text-align: center;
+            overflow-y: auto; /* Enables scrolling */
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #555 #ddd;
+        }
+        .container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 10px;
+        }
+        .container::-webkit-scrollbar-track {
+            background: #ddd;
+        }
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+            font-size: 28px;
+        }
+        .question {
+            font-size: 22px;
+            margin: 20px 0;
+            font-weight: bold;
+            color: #e90f0f;
+        }
+        .btn {
+            display: block;
+            margin: 10px auto;
+            padding: 15px;
+            background: #f6f7f8;
+            color: rgb(31, 30, 30);
+            border: none;
+            width: 100%;
+            max-width: 500px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 20px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .btn:hover {
+            background: #f3ac13;
+            transform: scale(1.05);
+        }
+        .btn.correct {
+            border: 3px solid rgb(46, 199, 8);
+        }
+        .btn.wrong {
+            border: 3px solid rgb(15, 15, 15);
+        }
+        .btn.selected {
+            background: #f3ac13;
+        }
+        #btn {
+            display: block;
+            margin: 20px auto;
+            padding: 15px;
+            background: #0bd61c;
+            color: white;
+            border: none;
+            width: 100%;
+            max-width: 500px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 20px;
+            transition: background 0.3s, transform 0.2s;
+        }
+        #btn:hover {
+            background: rgb(19, 199, 12);
+            transform: scale(1.05);
+        }
+        .scoreboard {
+            margin-bottom: 10px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="scoreboard">Correct: <span id="correctCount">0</span> | Wrong: <span id="wrongCount">0</span></div>
+    <div class="container">
+        <h1>Physics Quiz</h1>
+        
+        <div class="question-container">
+            <p class="question">1. What is the unit of force?</p>
+            <button class="btn" onclick="checkAnswer(this, false)">Joule</button>
+            <button class="btn" onclick="checkAnswer(this, true)">Newton</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Watt</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Pascal</button>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">2. What is the speed of light in vacuum?</p>
+            <button class="btn" onclick="checkAnswer(this, false)">3 × 10⁶ m/s</button>
+            <button class="btn" onclick="checkAnswer(this, true)">3 × 10⁸ m/s</button>
+            <button class="btn" onclick="checkAnswer(this, false)">3 × 10¹⁰ m/s</button>
+            <button class="btn" onclick="checkAnswer(this, false)">3 × 10¹² m/s</button>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">3. What is the SI unit of power?</p>
+            <button class="btn" onclick="checkAnswer(this, false)">Joule</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Newton</button>
+            <button class="btn" onclick="checkAnswer(this, true)">Watt</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Pascal</button>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">4. Who discovered the electron?</p>
+            <button class="btn" onclick="checkAnswer(this, true)">J.J. Thomson</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Rutherford</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Bohr</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Faraday</button>
+        </div>
+
+        <div class="question-container">
+            <p class="question">5. Which of the following is a scalar quantity?</p>
+            <button class="btn" onclick="checkAnswer(this, true)">Energy</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Velocity</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Momentum</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Force</button>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">6. The first law of motion is also known as?</p>
+            <button class="btn" onclick="checkAnswer(this, true)">Law of Inertia</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Law of Acceleration</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Law of Reaction</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Law of Gravitation</button>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">7. The unit of electrical resistance is?</p>
+            <button class="btn" onclick="checkAnswer(this, false)">Volt</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Ampere</button>
+            <button class="btn" onclick="checkAnswer(this, true)">Ohm</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Farad</button>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">8. The charge of an electron is?</p>
+            <button class="btn" onclick="checkAnswer(this, false)">+1.6 × 10⁻¹⁹ C</button>
+            <button class="btn" onclick="checkAnswer(this, true)">-1.6 × 10⁻¹⁹ C</button>
+            <button class="btn" onclick="checkAnswer(this, false)">0 C</button>
+            <button class="btn" onclick="checkAnswer(this, false)">1.6 × 10⁻¹⁸ C</button>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">9. What type of lens is used to correct myopia?</p>
+            <button class="btn" onclick="checkAnswer(this, false)">Convex lens</button>
+            <button class="btn" onclick="checkAnswer(this, true)">Concave lens</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Cylindrical lens</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Plano-convex lens</button>
+        </div>
+        
+        <div class="question-container">
+            <p class="question">10. The magnetic field inside a solenoid is?</p>
+            <button class="btn" onclick="checkAnswer(this, false)">Zero</button>
+            <button class="btn" onclick="checkAnswer(this, true)">Uniform</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Inversely proportional to current</button>
+            <button class="btn" onclick="checkAnswer(this, false)">Random</button>
+        </div>
+
+        <button id="btn" onclick="goBack()">Back to Home</button>
+    </div>
+
+    <script>
+        let correctCount = 0;
+        let wrongCount = 0;
+
+        function goBack() {
+            window.location.href = "quiz.html";
+        }
+
+        function checkAnswer(button, isCorrect) {
+            const questionContainer = button.parentElement;
+            const buttons = questionContainer.querySelectorAll('.btn');
+
+            // Disable all buttons after one is clicked
+            buttons.forEach(btn => {
+                btn.disabled = true;
+            });
+
+            // Highlight selected button
+            button.classList.add('selected');
+
+            if (isCorrect) {
+                button.classList.add('correct');
+                correctCount++;
+            } else {
+                button.classList.add('wrong');
+                wrongCount++;
+                // Highlight the correct answer
+                buttons.forEach(btn => {
+                    if (btn.onclick && btn.onclick.toString().includes('true')) {
+                        btn.classList.add('correct');
+                    }
+                });
+            }
+
+            // Update scoreboard
+            document.getElementById('correctCount').textContent = correctCount;
+            document.getElementById('wrongCount').textContent = wrongCount;
+
+            // Wait for 1 second before scrolling to the next question
+            setTimeout(() => {
+                const nextQuestion = questionContainer.nextElementSibling;
+                if (nextQuestion) {
+                    nextQuestion.scrollIntoView({ behavior: 'smooth' });
+                }
+            }, 1000); // 1-second delay
+        }
+    </script>
+</body>
+</html>

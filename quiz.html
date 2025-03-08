@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Quiz Game - Home</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; text-align: center; background: #f0f8ff; padding: 20px; display: flex; justify-content: center; align-items: center; height: 100vh; }
+        .container { width: 90%; max-width: 400px; padding: 20px; border: 1px solid #ccc; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); background: white; }
+        .btn { display: block; margin: 10px auto; padding: 12px; background: #007BFF; color: white; border: none; width: 100%; cursor: pointer; border-radius: 5px; font-size: 18px; transition: background 0.3s; }
+        .btn:hover { background: #0056b3; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Quiz Game!</h1>
+        <p>Select a subject to start the quiz:</p>
+        <button class="btn" onclick="startQuiz('physics')">Physics</button>
+        <button class="btn" onclick="startQuiz('chemistry')">Chemistry</button>
+        <button class="btn" onclick="startQuiz('maths')">Maths</button>
+        <button class="btn" onclick="startQuiz('biology')">Biology</button>
+        <button class="btn" onclick="startQuiz('sindhi')">Sindhi</button>
+        <button class="btn" onclick="startQuiz('urdu')">Urdu</button>
+        <button class="btn" onclick="startQuiz('english')">English</button>
+    </div>
+
+    <script>
+        function startQuiz(subject) {
+            window.location.href = subject + ".html";  // Redirects to subject quiz page
+        }
+    </script>
+</body>
+</html>
